@@ -1,0 +1,33 @@
+vec = float so
+https://www.youtube.com/watch?v=CzORVWFvZ28
+
+
+vec2 = float2
+vec3 = float3
+vec4 = float 4
+fract = frac
+mix = lerp
+atan = atan2
+texture( = text2D(
+mat3 = float3x3
+mod = *header* #define mod(x,y) (x-y*floor(x/y))
+iTime = _Time.y
+p = type mismatch  это проблема с матрицами, будем решать методом mul
+p = this =||= p *= mul(pp,p);   => и потом меняем   const float2x2 pp = 2.04*ROT(1.0); =>   const float2x2 pp = mul(2.04, ROT(1.0));
+
+
+
+по этой аналогии делаем все остальное, убераем приставки и () и так пока не дойдем до Shader error in 'Unlit/space': undeclared identifier 'iResolution' 
+
+берем основную функцию юнити      fixed4 frag (v2f i) : SV_Target
+и заменим основную функцию шейдер тоя void mainImage(out float4 fragColor, in float2 fragCoord) {
+
+=>
+
+fragCoord/iResolution.xy = i.uv;
+
+=>
+удаляем p.x *= RESOLUTION.x/RESOLUTION.y;
+
+
+fragColor = // return
